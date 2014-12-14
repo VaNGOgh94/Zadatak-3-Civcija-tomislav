@@ -162,7 +162,7 @@ void dodajKlijente( podaci *imeSpol){
   cout<<"Unesi broj klijenata (minimalno 200): ";
   while(1){
     cin>>brojElemenata;
-    if(brojElemenata>0)
+    if(brojElemenata>200)
       break;
     cout<<"Pogresan unos! Unesite ponovno: ";
   }
