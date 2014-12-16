@@ -71,9 +71,9 @@ void genNtorku(kliStrukt &klijent){
   
   do{
     klijent.ci=rand()%5+1;
-    if(dajGodine(klijent) < 65 && klijent.ci==4)//mlađi od 65 a mirovljenik
+    if(dajGodine(klijent) < 65 && klijent.ci==4)
       continue;
-    if(klijent.spol=='m'&&klijent.ci==3)//muško a trudan
+    if(klijent.spol=='m'&&klijent.ci==3)
       continue;
     break;
   } while (1);
@@ -97,7 +97,7 @@ void sortPrioritet(redStrukt *red, short domet){
   lista->sl=NULL;
   elemLista *trazi;
   kliStrukt pomElem;
-  if(domet==1){//dodajem prvog na prvo mjesto
+  if(domet==1){
       trazi=lista->sl=new elemLista;
       trazi->klijent=FrontQ(red);
       DeQueueQ(red);
@@ -118,7 +118,7 @@ void sortPrioritet(redStrukt *red, short domet){
     trazi->klijent=pomElem; 
     trazi->sl=cuvaj;
   }
-  for(elemLista *pom=lista->sl; pom; pom=pom->sl){//vraćam vezanu listu u red
+  for(elemLista *pom=lista->sl; pom; pom=pom->sl){
     //cout<<pom->klijent.ci<<" ";
     EnQueueQ(pom->klijent, red);
   }
@@ -151,7 +151,7 @@ bool obradiKlijente(redStrukt *red, kliStrukt klijent, int &bi){
       }
       bi=FrontQ(red).bi;
     }
-    else if (ai<bi) {//ako se klijent obrađuje a novi uđe, neka se novog stavlja na njegovo mjesto (pomocu sorta)
+    else if (ai<bi) {
       bi-=ai;
       return true;
     }
@@ -254,7 +254,7 @@ void prepisiRed(redStrukt *izvor, redStrukt *destinacija){
   kliStrukt pom=FrontQ(izvor);
   DeQueueQ(izvor);
   
-  prepisiRed(izvor, destinacija);//rek.
+  prepisiRed(izvor, destinacija);
   EnQueueQ(pom, izvor);
   EnQueueQ(pom, destinacija);
 }
@@ -289,15 +289,15 @@ void dajBrziSalter(redStrukt *red){
   }
   kliStrukt pom=FrontQ(red);
   DeQueueQ(red);
-  if(prvaDva<=1){//prva dva stavljamo u brziRed
+  if(prvaDva<=1){
     EnQueueQ(pom, brziRed); 
     prvaDva++;
   }
   dajBrziSalter(red);
-  if(pom.ci==4){//ako se radi o umirovljeniku zapisujemo u brziRed
+  if(pom.ci==4){
     EnQueueQ(pom, brziRed); 
   }
-  else //Inače vraćamo u red odakle je dosao
+  else 
     EnQueueQ(pom, red);
 }
 
